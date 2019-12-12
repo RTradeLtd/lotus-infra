@@ -1,12 +1,22 @@
-# stage 1 build - compiles the lotus node
+###########
+# stage 1 #
+###########
 FROM golang:1.13 AS build-env
-RUN apt-get update && apt-get install -y sudo curl git mesa-opencl-icd ocl-icd-opencl-dev
-RUN sudo apt install -y gcc git bzr jq pkg-config mesa-opencl-icd ocl-icd-opencl-dev
-RUN git clone https://github.com/filecoin-project/lotus.git
-RUN cd lotus && git pull && git checkout master && make clean all && sudo make install
-# stage 2 build - installs dependencies, copies lotus binary from stage 1, and adds default config
+RUN apt-get update -y && \
+    apt-get install sudo curl git mesa-opencl-icd ocl-icd-opencl-dev gcc git bzr jq pkg-config -y
+RUN git clone https://github.com/filecoin-project/lotus.git && \
+    cd lotus && \
+    git pull && \
+    git checkout master && \
+    make clean all && \
+    make install \
+
+###########
+# stage 2 #
+###########
 FROM debian:buster
-RUN apt-get update -y && apt-get install -y sudo mesa-opencl-icd ocl-icd-opencl-dev nginx
+RUN apt-get update -y && \
+    apt-get install sudo mesa-opencl-icd ocl-icd-opencl-dev nginx -y
 COPY --from=build-env /usr/local/bin/lotus /usr/local/bin/lotus
 COPY configs/lotus_node/config.toml /root/.lotus/config.toml
 COPY scripts/lotus_node_entrypoint.sh /bin/entrypoint.sh
