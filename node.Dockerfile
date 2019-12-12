@@ -5,7 +5,7 @@ RUN sudo apt install -y gcc git bzr jq pkg-config mesa-opencl-icd ocl-icd-opencl
 RUN git clone https://github.com/filecoin-project/lotus.git
 RUN cd lotus && git pull && git checkout master && make clean all && sudo make install
 # stage 2 build - installs dependencies, copies lotus binary from stage 1, and adds default config
-FROM golang:1.13
+FROM debian:buster
 RUN apt-get update -y && apt-get install -y sudo mesa-opencl-icd ocl-icd-opencl-dev nginx
 COPY --from=build-env /usr/local/bin/lotus /usr/local/bin/lotus
 COPY docker-files/lotus_docker_config.toml /root/.lotus/config.toml
