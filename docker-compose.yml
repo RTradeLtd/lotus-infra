@@ -1,0 +1,28 @@
+version: "3.5"
+services:
+  api:
+    container_name: "lotus-node.1"
+    image: rtradetech/lotus:latest
+    restart: always
+    ports:
+      - target: 1235
+        published: 1235
+      - target: 8080
+        published: 8080
+    volumes:
+      - type: volume
+        source: lotus-data
+        target: /root/.lotus
+  explorer:
+    container_name: "lotus-explorer.1"
+    image: rtradetech/lotus-explorer:latest
+    restart: always
+    depends_on:
+      - api
+    ports:
+      - target: 80
+        published: 6661
+
+volumes:
+    lotus-data:
+    
