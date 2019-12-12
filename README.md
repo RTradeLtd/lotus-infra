@@ -2,6 +2,15 @@
 
 This repository contains infrastructure tooling for the filecoin `lotus` client, and running the associated block explorer.
 
+# testing
+
+To test it's quite easy, simply run the following and you will have a fully setup lotus node, and block explorer
+
+```shell
+$> wget https://raw.githubusercontent.com/RTradeLtd/lotus-infra/master/docker-compose.yml -O docker-compose.yml 
+$> docker-compose -f docker-compose.yml up -d
+```
+
 # building
 
 To build the lotus node under `rtradetech/lotus-node:latest` and the block explorer under `rtradetech/lotus-explorer:latest` run `make docker-build`. If you want both containers in tandem as they are intended to be run `make docker-run`.
