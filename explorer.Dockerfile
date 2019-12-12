@@ -6,7 +6,7 @@ RUN cd /build/filecoin-explorer && git pull  && git checkout master && git check
 # stage 2 build
 FROM nginx:1.17.6-alpine
 COPY --from=build-env /build/filecoin-explorer/build /var/www/filecoin-explorer
-COPY docker-files/nginx_explorer.conf /etc/nginx/conf.d/explorer.conf
+COPY nginx/conf.d/lotus_explorer.conf /etc/nginx/conf.d/lotus_explorer.conf
 RUN rm /etc/nginx/conf.d/default.conf
 EXPOSE 80/tcp
 CMD ["nginx", "-g", "daemon off;"]

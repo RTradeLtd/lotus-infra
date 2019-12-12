@@ -24,22 +24,6 @@ The compose file allows us to spin up an instante of the lotus node with persist
 
 This is a standalone lotus node, intended to expose the swarm port, and an NGINX reverse proxy server offering access to the API. Additinoally the proxy server handles CORS, and caches `GET` and `HEAD` requests. The docker container is based on debian buster.
 
-Associated files:
-
-* `docker-files/entrypoint.sh`
-  * The script ran when the lotus node docker container starts
-* `docker-files/lotus_docker_config.toml`
-  * This is the actual lotus node configuration file
-* `docker-files/nginx_lotus_api_config.conf`
-  * This is the NGINX proxy configuration for the API
-* `docker-files/nginx_lotus_main.conf`
-  * This is the NGINX server configuration
-
 ## block explorer
 
 This is an NGINX web server that offers access to the filecoin lotus block explorer. The docker container is based on alpine linux.
-
-Associated files:
-
-* `docker-files/nginx_explorer.conf`
-  * This is the NGINX explorer web server configuration
