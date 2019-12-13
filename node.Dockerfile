@@ -9,7 +9,7 @@ RUN git clone https://github.com/filecoin-project/lotus.git && \
     git pull && \
     git checkout master && \
     make clean all && \
-    make install \
+    make install
 
 ###########
 # stage 2 #

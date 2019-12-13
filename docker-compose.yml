@@ -13,6 +13,9 @@ services:
       - type: volume
         source: lotus-data
         target: /root/.lotus
+      - type: volume
+        source: filecoin-params
+        target: /var/tmp/filecoin-proof-parameters
   explorer:
     container_name: "lotus-explorer.1"
     image: rtradetech/lotus-explorer:latest
@@ -25,4 +28,4 @@ services:
 
 volumes:
     lotus-data:
-    
+    filecoin-params:
