@@ -10,7 +10,6 @@ RUN mkdir /build && \
     cd /build/filecoin-explorer && \
     git pull && \
     git checkout master && \
-    git checkout master && \
     yarn && \
     npm run build
 
