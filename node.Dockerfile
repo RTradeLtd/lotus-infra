@@ -7,7 +7,7 @@ RUN apt-get update -y && \
 RUN git clone https://github.com/filecoin-project/lotus.git && \
     cd lotus && \
     git pull && \
-    git checkout master && \
+    git checkout v0.2.2 && \
     make clean all && \
     make install
 
